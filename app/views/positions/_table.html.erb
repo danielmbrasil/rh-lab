@@ -1,0 +1,21 @@
+<div id="positions" class="min-w-full">
+  <div class="rounded-xl overflow-auto">
+    <table class="border-collapse table-auto w-full text-sm">
+      <thead>
+        <tr>
+          <th class="bg-blue-100 border text-left px-8 py-4 whitespace-nowrap">Name</th>
+          <th class="bg-blue-100 border text-left px-8 py-4 whitespace-nowrap"></th>
+        </tr>
+      </thead>
+      <% positions.each do |position| %>
+        <tr>
+          <td class="border px-8 py-4 w-full whitespace-nowrap"><%= position.name %></td>
+          <td class="border px-8 py-4 whitespace-nowrap">
+            <%= link_to 'Show', position, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+            <%= link_to 'Edit', edit_position_path(position), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div id="employments" class="min-w-full">
+  <div class="rounded-xl overflow-auto">
+    <table class="border-collapse table-auto w-full text-sm">
+      <thead>
+        <tr>
+          <th class="bg-blue-100 border text-left px-8 py-4 whitespace-nowrap">Name</th>
+          <th class="bg-blue-100 border text-left px-8 py-4 whitespace-nowrap">Department</th>
+          <th class="bg-blue-100 border text-left px-8 py-4 whitespace-nowrap">Position</th>
+          <th class="bg-blue-100 border text-left px-8 py-4 whitespace-nowrap"></th>
+        </tr>
+      </thead>
+      <% employments.each do |employment| %>
+        <tr>
+          <td class="border px-8 py-4 w-full whitespace-nowrap"><%= employment.employee.name %></td>
+          <td class="border px-8 py-4 whitespace-nowrap"><%= employment.department.name %></td>
+          <td class="border px-8 py-4 whitespace-nowrap"><%= employment.position.name %></td>
+          <td class="border px-8 py-4 whitespace-nowrap">
+            <%= link_to 'Show', employment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+            <%= link_to 'Edit', edit_employment_path(employment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

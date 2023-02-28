@@ -1,0 +1,47 @@
+<div id="<%= dom_id employment %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Employee:</strong>
+    <%= employment.employee.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Department:</strong>
+    <%= employment.department.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Position:</strong>
+    <%= employment.position.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Registration:</strong>
+    <%= employment.registration %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Reason:</strong>
+    <%= employment.reason %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Salary:</strong>
+    <%= employment.salary %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Starts on:</strong>
+    <%= employment.starts_on %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Ends on:</strong>
+    <%= employment.ends_on %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this employment", employment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this employment', edit_employment_path(employment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
