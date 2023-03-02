@@ -6,6 +6,7 @@ class Employee < ApplicationRecord
 
   has_many :employments
   has_many :departments, through: :employments
+  has_many :active_employments, -> { active }, class_name: 'Employment'
 
   has_many :managed_departments,
            class_name: 'Department',
