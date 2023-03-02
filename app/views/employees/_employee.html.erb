@@ -4,24 +4,41 @@
     <%= employee.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Department:</strong>
-    <%= '<curent department name>' %>
-  </p>
+  <% if employee.active_employments.load.any? %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Department:</strong>
+      <%= employee.active_employments.first.department.name %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Position:</strong>
-    <%= '<curent position name>' %>
-  </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Position:</strong>
+      <%= employee.active_employments.first.position.name %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Salary:</strong>
-    <%= '<curent salary>' %>
-  </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Salary:</strong>
+      <%= employee.active_employments.first.salary %>
+    </p>
+  <% else %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Department:</strong>
+      <%= 'No active department' %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Position:</strong>
+      <%= 'No active position' %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Salary:</strong>
+      <%= 'No active salary' %>
+    </p>
+  <% end %>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Projects:</strong>
-    <%= render 'projects/table', projects: @employee.projects %>
+    <%= render 'projects/table', projects: @employee.projects.order('starts_on DESC') %>
   </p>
 
   <% if action_name != "show" %>
