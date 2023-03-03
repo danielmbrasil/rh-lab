@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[show edit update destroy]
+  before_action :set_employee, only: %i[edit update destroy]
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.includes(active_employments: :department).all
+    @employees = FetchEmployees.fetch_all
   end
 
   # GET /employees/1 or /employees/1.json
-  def show; end
+  def show
+    @employee = FetchEmployees.fetch(params[:id])
+  end
 
   # GET /employees/new
   def new

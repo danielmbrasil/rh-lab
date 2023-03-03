@@ -18,8 +18,6 @@ class Employment < ApplicationRecord
   enum :reason, { hire: 1, promote: 10, restructure: 20 },
        default: :hire
 
-  scope :active, -> { where(ends_on: nil) }
-
   def only_one_active_employment
     return if ends_on.present?
     return unless Employment.exists?(ends_on: nil, employee_id:)
