@@ -1,49 +1,32 @@
-<div id="<%= dom_id employee %>">
+<div id="<%= "employee_#{employee[:id]}" %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Name:</strong>
-    <%= employee.name %>
+    <%= employee[:name] %>
   </p>
 
-  <% if employee.active_employments.load.any? %>
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Department:</strong>
-      <%= employee.active_employments.first.department.name %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Department:</strong>
+    <%= employee.dig(:active_department, :name) %>
+  </p>
 
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Position:</strong>
-      <%= employee.active_employments.first.position.name %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Position:</strong>
+    <%= employee.dig(:active_position, :name) %>
+  </p>
 
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Salary:</strong>
-      <%= employee.active_employments.first.salary %>
-    </p>
-  <% else %>
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Department:</strong>
-      <%= 'No active department' %>
-    </p>
-
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Position:</strong>
-      <%= 'No active position' %>
-    </p>
-
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Salary:</strong>
-      <%= 'No active salary' %>
-    </p>
-  <% end %>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Salary:</strong>
+    <%= employee.dig(:active_employment, :salary) %>
+  </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Projects:</strong>
-    <%= render 'projects/table', projects: @employee.projects.order('starts_on DESC') %>
+    <%= render 'projects/table', projects: employee[:projects] %>
   </p>
 
   <% if action_name != "show" %>
     <%= link_to "Show this employee", employee, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this employee', edit_employee_path(employee), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this employee', edit_employee_path(id: employee[:id]), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>
