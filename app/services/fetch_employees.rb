@@ -27,4 +27,18 @@ class FetchEmployees
       projects: employee.projects
     }
   end
+
+  def self.fetch_active_by_departmend(id)
+    employees = Employee.includes(:employments, :departments)
+                        .where(employments: { ends_on: nil }, departments: { id: })
+
+    employees.map do |employee|
+      {
+        id: employee.id,
+        name: employee.name,
+        active_department: { name: employee.departments&.last&.name },
+        active_employment: { registration: employee.employments&.last&.registration }
+      }
+    end
+  end
 end
